@@ -1,30 +1,61 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+  <NavbarSection />
   <router-view />
+  <FooterSection />
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+import NavbarSection from "@/components/section/NavbarSection.vue";
+import FooterSection from "./components/section/FooterSection.vue";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    NavbarSection,
+    FooterSection,
+  },
+});
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-nav {
-  padding: 30px;
+html {
+  font-size: 100%;
+  font-family: "Inter", "Noto Sans TC";
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+body {
+  overflow-x: hidden;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+input,
+textarea,
+button {
+  border: none;
+  outline: none;
 }
 </style>
