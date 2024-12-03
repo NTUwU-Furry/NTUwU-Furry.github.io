@@ -107,6 +107,7 @@ nav#navbar {
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 0 4px $primary-color;
   section#main-navbar {
     display: flex;
     justify-content: space-between;
@@ -187,16 +188,19 @@ nav#navbar {
         position: absolute;
         flex-direction: column;
         justify-content: flex-start;
-        row-gap: 1.6rem;
         background: $white;
         box-shadow: 0 0 4px $primary-color;
         width: 100%;
-        padding: 1rem 0;
         bottom: 0;
         transform: translateX(-120%) translateY(100%);
         transition: all 0.27s ease-in-out;
         &.open {
           transform: translateX(0) translateY(100%);
+        }
+        a {
+          padding: 0.8rem 0;
+          text-align: center;
+          width: 100%;
         }
       }
       i.menu-button {

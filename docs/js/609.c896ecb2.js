@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkntuwu_furry_website"]=self["webpackChunkntuwu_furry_website"]||[]).push([[609],{5609:function(u,n,t){t.r(n),t.d(n,{default:function(){return f}});var e=t(6768);const r={class:"about"};function s(u,n){return(0,e.uX)(),(0,e.CE)("div",r,n[0]||(n[0]=[(0,e.Lk)("h1",null,"This is an about page",-1)]))}var a=t(1241);const c={},i=(0,a.A)(c,[["render",s]]);var f=i}}]);
-//# sourceMappingURL=609.c896ecb2.js.map

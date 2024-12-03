@@ -109,7 +109,6 @@ $darker: #131111;
 $footer-padding: 1rem 80px;
 
 footer#footer {
-  position: absolute;
   bottom: 0;
   color: $white;
   width: 100%;
