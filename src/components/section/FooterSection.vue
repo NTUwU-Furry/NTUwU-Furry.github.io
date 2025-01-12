@@ -82,7 +82,12 @@ export default defineComponent({
         },
         {
           title: "operation",
-          links: [],
+          links: [
+            {
+              name: "登入點數系統 (只限社員)",
+              href: "http://3.27.251.63",
+            },
+          ],
         },
       ],
     };

@@ -25,7 +25,7 @@ export default defineComponent({
   methods: {
     async getLatestEvents() {
       const events = await axios.get(
-        "https://www.googleapis.com/calendar/v3/calendars/af5e41829a41e0d4a57af5e2fffc8fda2483d0c4863aad147e4c15bc6996b731@group.calendar.google.com/events?key=AIzaSyC1qeKLryVxGiWj04p7GJzS9rWsX-L8k6I"
+        "https://www.googleapis.com/calendar/v3/calendars/af5e41829a41e0d4a57af5e2fffc8fda2483d0c4863aad147e4c15bc6996b731@group.calendar.google.com/events?key=AIzaSyAc7m0zPd3eNhYj8k4_5opx6iCj5O9-Q_c"
       );
       return events.data.items;
     },
@@ -54,6 +54,7 @@ div#about {
     text-align: center;
   }
   section#event-list {
+    padding: 1rem 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;

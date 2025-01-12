@@ -3,9 +3,6 @@
     <h3>{{ event.summary }}</h3>
     <p class="description">{{ event.description }}</p>
     <p>活動日期: {{ formatDate(event.start.dateTime) }}</p>
-    <p>
-      {{ calculateDuration(event.start.dateTime, event.end.dateTime) }} 小時
-    </p>
   </div>
 </template>
 
@@ -34,7 +31,10 @@ export default defineComponent({
       const date = new Date(datetime);
       return `${date.getFullYear()}年 ${
         date.getMonth() + 1
-      }月 ${date.getDate()}日 ${date.getHours()}時 ${date.getMinutes()}分`;
+      }月 ${date.getDate()}日 ${date.getHours()}時 ${date
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}分`;
     },
     calculateDuration(startDateTime: string, endDateTime: string) {
       const start = new Date(startDateTime);

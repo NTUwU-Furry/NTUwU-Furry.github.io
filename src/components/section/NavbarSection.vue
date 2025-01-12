@@ -9,15 +9,7 @@
       <ul id="menu">
         <router-link to="/">{{ $t("navbar.home") }}</router-link>
         <router-link to="/about">{{ $t("navbar.about") }}</router-link>
-        <router-link to="/product">{{ $t("navbar.product") }}</router-link>
-        <!-- Auth -->
-        <template v-if="getLoginInfo">
-          <router-link to="/dashboard">{{
-            $t("navbar.dashboard")
-          }}</router-link>
-          <router-link to="/logout">{{ $t("navbar.logout") }}</router-link>
-        </template>
-        <router-link v-else to="/login">{{ $t("navbar.login") }}</router-link>
+        <!-- <router-link to="/product">{{ $t("navbar.product") }}</router-link> -->
       </ul>
       <i class="fa fa-bars menu-button" @click="handleMenu"></i>
     </section>

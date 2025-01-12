@@ -1,5 +1,8 @@
 <template>
   <section id="home">
+    <div class="header">
+      <img :src="header_image" alt="" />
+    </div>
     <div class="intro">
       <h2>社團簡介</h2>
       <p>
@@ -22,10 +25,11 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from "vue";
 import EventBox from "@/components/block/EventBox.vue";
 import axios from "axios";
+import header_image from "@/assets/header.jpg";
 
 export default defineComponent({
   name: "HomeView",
@@ -35,14 +39,19 @@ export default defineComponent({
   data() {
     return {
       latestEvents: [],
+      header_image: header_image,
     };
   },
   methods: {
     async getLatestEvents() {
-      const events = await axios.get(
-        "https://www.googleapis.com/calendar/v3/calendars/af5e41829a41e0d4a57af5e2fffc8fda2483d0c4863aad147e4c15bc6996b731@group.calendar.google.com/events?key=AIzaSyC1qeKLryVxGiWj04p7GJzS9rWsX-L8k6I"
+      let events = await axios.get(
+        "https://www.googleapis.com/calendar/v3/calendars/af5e41829a41e0d4a57af5e2fffc8fda2483d0c4863aad147e4c15bc6996b731@group.calendar.google.com/events?key=AIzaSyAc7m0zPd3eNhYj8k4_5opx6iCj5O9-Q_c"
       );
-      console.debug(events.data.items);
+      const now = new Date();
+      this.latestEvents = events.data.items
+        .filter((event) => new Date(event.start.dateTime) > now)
+        .sort((a, b) => new Date(a.start.dateTime) - new Date(b.start.dateTime))
+        .slice(0, 3);
     },
   },
   mounted() {
@@ -60,20 +69,28 @@ $primary-lighter-color: #f2f2f2;
 $white: #ffffff;
 $black: #000000;
 
-$section-padding: 1rem 80px;
+$section-padding: 2rem 80px 1rem;
 
 section#home {
-  padding: $section-padding;
   div {
-    margin-top: 2rem;
     h2 {
       text-align: center;
       font-size: 1.8rem;
       color: $primary-color;
       margin-bottom: 1rem;
     }
+    &.header {
+      display: flex;
+      justify-content: center;
+      max-height: 70vh;
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
     /* 社團簡介 */
     &.intro {
+      padding: $section-padding;
       p {
         font-size: 1.1rem;
         color: $primary-darker-color;
@@ -82,6 +99,7 @@ section#home {
       }
     }
     &.event {
+      padding: $section-padding;
       section.event-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
