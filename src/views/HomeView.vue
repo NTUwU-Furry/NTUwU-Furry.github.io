@@ -114,5 +114,16 @@ section#home {
 }
 
 @media screen and (max-width: 720px) {
+  section#home {
+    div {
+      &.event {
+        padding: $section-padding;
+        section.event-list {
+          grid-template-columns: repeat(1, 1fr);
+          row-gap: 2rem;
+        }
+      }
+    }
+  }
 }
 </style>

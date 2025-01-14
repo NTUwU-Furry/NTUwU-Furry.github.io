@@ -21,6 +21,19 @@ const routes: Array<RouteRecordRaw> = [
       KeepAlive: true,
     },
   },
+  {
+    path: "/404",
+    name: "not",
+    component: () => import("../views/404View.vue"),
+    meta: {
+      title: "找不到頁面",
+      KeepAlive: true,
+    },
+  },
+  {
+    path: "/:catchAll(.*)",
+    redirect: "/404",
+  },
 ];
 
 const router = createRouter({
