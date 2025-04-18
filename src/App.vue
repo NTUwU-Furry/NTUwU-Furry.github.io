@@ -1,6 +1,13 @@
 <template>
   <NavbarSection />
-  <router-view />
+  <!-- <router-view /> -->
+  <div class="new-version">
+    <p>
+      新版網頁開發中<br />
+      敬請期待
+    </p>
+    <img class="image" :src="pine_yippee" />
+  </div>
   <FooterSection />
 </template>
 
@@ -8,12 +15,18 @@
 import { defineComponent } from "vue";
 import NavbarSection from "@/components/section/NavbarSection.vue";
 import FooterSection from "./components/section/FooterSection.vue";
+import pine_yippee from "@/assets/松果YIPPEE.png";
 
 export default defineComponent({
   name: "App",
   components: {
     NavbarSection,
     FooterSection,
+  },
+  data() {
+    return {
+      pine_yippee: pine_yippee,
+    };
   },
 });
 </script>
@@ -57,5 +70,16 @@ textarea,
 button {
   border: none;
   outline: none;
+}
+
+div.new-version {
+  text-align: center;
+  font-size: 2rem;
+  padding: 2rem 0;
+  img.image {
+    min-width: 200px;
+    width: 25vw;
+    height: auto;
+  }
 }
 </style>
