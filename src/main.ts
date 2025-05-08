@@ -1,27 +1,14 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import lang from "./lang";
-import VueCookies from "vue-cookies";
-import axios from "axios";
+import './assets/main.css'
 
-// 宣告 Window
-let windowContext: any = window;
-if (
-  window.frameElement &&
-  window.frameElement.getAttribute("tiledesk_context") === "parent"
-) {
-  windowContext = window.parent;
-}
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 
-// 主體部分
-windowContext.axios = axios;
+import App from './App.vue'
+import router from './router'
 
-router.beforeEach((to, from, next) => {
-  windowContext.document.title =
-    to.meta.title == undefined ? "默认标题" : to.meta.title;
-  next();
-});
+const app = createApp(App)
 
-createApp(App).use(store).use(router).use(lang).use(VueCookies).mount("#app");
+app.use(createPinia())
+app.use(router)
+
+app.mount('#app')
