@@ -18,7 +18,10 @@
               <p class="events-location">{{ events.location }}</p>
             </div>
           </div>
-          <img :src="events.preview ?? eventDefaultCover" alt="" />
+          <div>
+            <p class="coming-soon" v-if="isComingSoon(events.date)">即將到來</p>
+            <img :src="events.preview ?? eventDefaultCover" alt="" @error="handleImageError" />
+          </div>
         </RouterLink>
       </div>
       <RouterLink to="/events" @mouseenter="isHover = true" @mouseleave="isHover = false">
@@ -49,6 +52,27 @@ const eventsListLatest = eventsList.slice(0, 4).map((item: EventsItem) => ({
   location: item.location,
   preview: item.preview,
 }))
+
+const handleImageError = (event: Event) => {
+  const target = event.target as HTMLImageElement
+  target.src = eventDefaultCover
+}
+
+const isComingSoon = (dateStr: string): boolean => {
+  const dateMatch = dateStr.match(/\d{4}-\d{2}-\d{2}/)
+  if (!dateMatch) return false
+
+  const eventDate = new Date(dateMatch[0])
+  const now = new Date()
+
+  eventDate.setHours(0, 0, 0, 0)
+  now.setHours(0, 0, 0, 0)
+
+  const diffTime = eventDate.getTime() - now.getTime()
+  const diffDays = diffTime / (1000 * 60 * 60 * 24)
+
+  return diffDays >= 0 && diffDays <= 7
+}
 </script>
 
 <style scoped lang="scss">
@@ -108,15 +132,34 @@ section#events {
             &.events-date,
             &.events-location {
               font-size: 1.2rem;
-              line-height: 2rem;
+              line-height: 2.2rem;
+            }
+            &.events-location {
+              padding-top: 0.4rem;
             }
           }
         }
-        img {
-          max-width: 200px;
+        div {
+          position: relative;
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          p.coming-soon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0.6rem;
+            padding: 0.2rem 0.4rem;
+            background: #904042;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1/1;
+          }
         }
 
         &::after {
@@ -199,25 +242,38 @@ section#events {
         grid-template-columns: repeat(1, 1fr);
         width: 100%;
         a.events-item {
-          padding: 0.4rem;
+          display: grid;
+          grid-template-columns: 2fr 1fr;
           div.text-area {
+            padding: 1rem;
             p {
               padding: 0;
               &.events-title {
                 height: 100%;
                 margin-top: 0.2rem;
                 padding-bottom: 1rem;
+                font-size: 1.2rem;
               }
               &.events-date {
                 padding-top: 1rem;
+                font-size: 1rem;
               }
               &.events-location {
                 display: none;
               }
             }
           }
-          img {
-            max-width: 100px;
+          div {
+            height: 100%;
+            width: 100%;
+            p.coming-soon {
+              font-size: 1rem;
+            }
+            img {
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
           }
         }
       }

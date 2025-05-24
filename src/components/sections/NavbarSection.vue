@@ -76,7 +76,7 @@ nav#navbar {
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
-    transition-delay: 0.35s;
+    transition-delay: 0.2s;
   }
 
   ul#pages {
@@ -174,11 +174,8 @@ nav#navbar {
       a {
         padding: 0.5rem 1rem;
         text-align: right;
-        opacity: 0;
-        transform: translateY(-0.5rem);
         transition:
           opacity 0.24s ease 0.6s,
-          transform 0.24s ease 0.6s,
           color 0.24s ease 0s;
 
         &#home {
@@ -212,7 +209,6 @@ nav#navbar {
 
       a {
         opacity: 1;
-        transform: translateY(0);
       }
     }
     &.open ul#pages.line::after {

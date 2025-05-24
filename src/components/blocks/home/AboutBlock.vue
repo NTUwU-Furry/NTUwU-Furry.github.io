@@ -72,17 +72,17 @@ onMounted(() => {
   // 開始滾動
   window.setInterval(() => {
     const el = earCarousel.value!
-    el.scrollLeft -= 1
-    if (el.scrollLeft <= 0) {
-      el.scrollLeft = el.scrollWidth - el.clientWidth
+    el.scrollLeft += 1
+    if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
+      el.scrollLeft = 0
     }
   }, 20)
 
   window.setInterval(() => {
     const el = tailCarousel.value!
-    el.scrollLeft += 1
-    if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
-      el.scrollLeft = 0
+    el.scrollLeft -= 1
+    if (el.scrollLeft <= 0) {
+      el.scrollLeft = el.scrollWidth - el.clientWidth
     }
   }, 20)
 })

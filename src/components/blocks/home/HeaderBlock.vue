@@ -80,11 +80,11 @@ onMounted(() => {
   if (!el) return
 
   scrollTimer = window.setInterval(() => {
-    el.scrollLeft -= 1
-    if (el.scrollLeft <= 0) {
-      el.scrollLeft = el.scrollWidth - el.clientWidth
+    el.scrollLeft += 1
+    if (el.scrollLeft >= el.scrollWidth - el.clientWidth) {
+      el.scrollLeft = 0
     }
-  }, 7.5) // 調整數字可控制速度
+  }, 30) // 調整數字可控制速度
 })
 
 onBeforeUnmount(() => {
